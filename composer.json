@@ -63,7 +63,8 @@
         "symfony/serializer": "^4.4 || ^5.4 || ^6.0",
         "symfony/twig-bundle": "^4.4 || ^5.4 || ^6.0",
         "symfony/web-profiler-bundle": "^4.4 || ^5.4 || ^6.0",
-        "symfony/yaml": "^4.4 || ^5.4 || ^6.0"
+        "symfony/yaml": "^4.4 || ^5.4 || ^6.0",
+        "symfony/uid": "5.4.*"
     },
     "suggest": {
         "enqueue/elastica-bundle": "For populating Elasticsearch indexes asynchronously and using significanly less resources. Uses Enqueue.",

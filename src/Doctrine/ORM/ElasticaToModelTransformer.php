@@ -13,6 +13,7 @@ namespace FOS\ElasticaBundle\Doctrine\ORM;
 
 use Doctrine\ORM\Query;
 use FOS\ElasticaBundle\Doctrine\AbstractElasticaToModelTransformer;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * Maps Elastica documents with Doctrine objects
