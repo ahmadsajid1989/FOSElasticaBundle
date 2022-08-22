@@ -14,6 +14,8 @@ namespace FOS\ElasticaBundle\Doctrine\ORM;
 use Doctrine\ORM\Query;
 use FOS\ElasticaBundle\Doctrine\AbstractElasticaToModelTransformer;
 use Symfony\Component\Uid\Uuid;
+use Doctrine\ORM\Query\Parameter;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Maps Elastica documents with Doctrine objects
@@ -41,7 +43,14 @@ class ElasticaToModelTransformer extends AbstractElasticaToModelTransformer
 
         $qb = $this->getEntityQueryBuilder();
         $qb->andWhere($qb->expr()->in(static::ENTITY_ALIAS.'.'.$this->options['identifier'], ':values'))
-            ->setParameter('values', $identifierValues)
+            ->setParameter(':values', array_map(function ($id) {
+                $isValid = Uuid::isValid($id);
+                if($isValid) {
+                    return Uuid::fromString($id)->toBinary();
+                }
+                return $id;
+            }, $identifierValues));
+        //->setParameter('values', $identifierValues)
         ;
 
         $query = $qb->getQuery();
